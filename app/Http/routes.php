@@ -12,7 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+});
+
+Route::get('/cadastro', function () {
+    return view('home.candidate.add');
+});
+
+Route::post('/cadastro', function () {
+    dd(1);
+    return view('home.candidate.add');
+});
+
+Route::get('/{ref}', function () {
+    return view('home.candidate.view');
 });
 
 /*
