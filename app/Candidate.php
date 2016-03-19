@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Candidate extends Model
 {
-    protected $table = 'user';
+    protected $table = 'candidate';
 
-    public function candidates()
+    public function user()
     {
-        return $this->hasMany('\\App\\Candidate');
+        return $this->belongsTo('\\App\\User');
     }
 
     public function votes()
