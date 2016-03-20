@@ -11,20 +11,46 @@
 |
 */
 
-Route::get('/', function () {
-});
+Route::get('/', [
+    'as' => 'home.index',
+    'uses' => '\\App\\Http\\Controllers\\HomeController@index'
+]);
 
-Route::get('/cadastro', function () {
-    return view('home.candidate.add');
-});
+Route::get('/cadastro', [
+    'as' => 'home.candidate.add',
+    'uses' => '\\App\\Http\\Controllers\\CandidateController@add'
+]);
 
-Route::post('/cadastro', function () {
-    dd(1);
-    return view('home.candidate.add');
-});
+Route::post('/cadastro', [
+    'as' => 'home.candidate.submit',
+    'uses' => '\\App\\Http\\Controllers\\CandidateController@submit'
+]);
 
-Route::get('/{ref}', function () {
-    return view('home.candidate.view');
+Route::get('/{ref}', [
+    'as' => 'home.candidate.view',
+    'uses' => '\\App\\Http\\Controllers\\CandidateController@view'
+]);
+
+Route::group(['prefix' => 'ajax'], function () {
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/{facebookId}', [
+            'as' => 'ajax.user.get',
+            'uses' => '\\App\\Http\\Controllers\\UserController@get'
+        ]);
+
+        Route::post('/', [
+            'as' => 'ajax.user.add',
+            'uses' => '\\App\\Http\\Controllers\\UserController@add'
+        ]);
+    });
+
+    Route::group(['prefix' => 'vote'], function () {
+        Route::post('/', [
+            'as' => 'ajax.vote.add',
+            'uses' => '\\App\\Http\\Controllers\\VoteController@add'
+        ]);
+    });
 });
 
 /*
