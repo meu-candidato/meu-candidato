@@ -36,19 +36,27 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('/{facebookId}', [
             'as' => 'ajax.user.get',
-            'uses' => '\\App\\Http\\Controllers\\UserController@get'
+            'uses' => '\\App\\Http\\Controllers\\Ajax\\UserController@get'
         ]);
 
         Route::post('/', [
             'as' => 'ajax.user.add',
-            'uses' => '\\App\\Http\\Controllers\\UserController@add'
+            'uses' => '\\App\\Http\\Controllers\\Ajax\\UserController@add'
         ]);
     });
 
     Route::group(['prefix' => 'vote'], function () {
         Route::post('/', [
             'as' => 'ajax.vote.add',
-            'uses' => '\\App\\Http\\Controllers\\VoteController@add'
+            'uses' => '\\App\\Http\\Controllers\\Ajax\\VoteController@add'
+        ]);
+    });
+
+    Route::group(['prefix' => 'candidate'], function () {
+        // To set a custom page, send query param "page"
+        Route::get('/', [
+            'as' => 'ajax.candidate.paginate',
+            'uses' => '\\App\\Http\\Controllers\\Ajax\\CandidateController@paginate'
         ]);
     });
 });
