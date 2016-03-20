@@ -17,10 +17,12 @@ class CreateCandidateTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('user');
             $table->string('name', 255);
-            $table->string('short_description', 255);
-            $table->text('description');
+            $table->string('ref', 255);
+            $table->integer('age');
+            $table->string('job', 255);
             $table->boolean('approved')->default(false);
             $table->text('history')->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

@@ -19,6 +19,7 @@ class CreateUserTable extends Migration
             $table->string('facebook_id', 255);
             $table->text('access_token');
             $table->boolean('admin')->default(false)->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
     }
